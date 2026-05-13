@@ -248,11 +248,11 @@ export default function PhotoboothMain() {
         >
 
           <p className="font-montserrat text-gold/70 text-xs tracking-[0.4em] uppercase mb-2">
-            Romantic Vintage
+            Romantic Photobooth
           </p>
 
           <h1 className="font-playfair text-4xl md:text-5xl text-ivory/90 italic">
-            Love Photobooth
+            Frame Me Softly
           </h1>
 
         </motion.div>
