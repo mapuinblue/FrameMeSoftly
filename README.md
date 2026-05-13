@@ -3,7 +3,7 @@
 A romantic vintage-inspired digital photobooth built with React, Framer Motion, and TailwindCSS.
 Capture aesthetic photo strips with cinematic filters, ambient music, elegant animations, and downloadable memories.
 
-<img width="1919" height="824" alt="Image" src="https://github.com/user-attachments/assets/3fa29eb1-7f9f-46f6-888a-11c40e2830ab" />
+<img width="1919" height="822" alt="Image" src="https://github.com/user-attachments/assets/658cf765-9b47-43a5-ac1b-3a346acd1522" />
 ---
 
 ## 🌹 Features
