@@ -1,20 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Sample couple-style placeholder images from Unsplash
+import photo1 from '../../assets/photos/1000131680.webp'
+import photo2 from '../../assets/photos/1000131757.webp'
+import photo3 from '../../assets/photos/1000131848.webp'
+import photo4 from '../../assets/photos/1000131895.webp'
+import photo5 from '../../assets/photos/1000131987.webp'
+import photo6 from '../../assets/photos/1000132044.webp'
+import photo7 from '../../assets/photos/1000132114.webp'
+import photo8 from '../../assets/photos/1000132115.webp'
+import photo9 from '../../assets/photos/1000132130.webp'
+import photo10 from '../../assets/photos/1000132152.webp'
+import photo11 from '../../assets/photos/1000132159.webp'
+import photo12 from '../../assets/photos/1000132175.webp'
+import photo13 from '../../assets/photos/1000135047.webp'
+import photo14 from '../../assets/photos/1000135928.webp'
+import photo15 from '../../assets/photos/1000135932.webp'
+
 const PHOTO_URLS = [
-  'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=300&q=80',
-  'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=300&q=80',
-  'https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=300&q=80',
-  'https://images.unsplash.com/photo-1545231027-637d2f6210f8?w=300&q=80',
-  'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=300&q=80',
-  'https://images.unsplash.com/photo-1518895312237-a9e23508077d?w=300&q=80',
-  'https://images.unsplash.com/photo-1583939411023-14783179e581?w=300&q=80',
-  'https://images.unsplash.com/photo-1519741497674-611481863552?w=300&q=80',
-  'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=300&q=80',
-  'https://images.unsplash.com/photo-1597586124394-fbd6ef244026?w=300&q=80',
-  'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=300&q=80',
-  'https://images.unsplash.com/photo-1578778266369-b7d6e83e4e9f?w=300&q=80',
+  photo1,
+  photo2,
+  photo3,
+  photo4,
+  photo5,
+  photo6,
+  photo7,
+  photo8,
+  photo9,
+  photo10,
+  photo11,
+  photo12,
+  photo13,
+  photo14,
+  photo15,
 ];
 
 const POLAROIDS = Array.from({ length: 14 }, (_, i) => ({

@@ -1,3 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 20 8% 6%;
+    --foreground: 35 25% 92%;
+    --card: 20 10% 8%;
+    --card-foreground: 35 25% 92%;
+    --popover: 20 10% 8%;
+    --popover-foreground: 35 25% 92%;
+    --primary: 350 65% 35%;
+    --primary-foreground: 35 25% 95%;
+    --secondary: 30 20% 15%;
+    --secondary-foreground: 35 25% 92%;
+    --muted: 20 10% 12%;
+    --muted-foreground: 30 10% 55%;
+    --accent: 42 60% 60%;
+    --accent-foreground: 20 8% 6%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 350 30% 22%;
+    --input: 350 20% 18%;
+    --ring: 350 65% 40%;
+    --radius: 0.75rem;
+
+    --wine: 350 65% 30%;
+    --wine-light: 350 55% 45%;
+    --wine-dark: 350 70% 18%;
+    --ivory: 38 40% 92%;
+    --gold: 42 70% 58%;
+    --gold-light: 44 75% 72%;
+    --deep-bg: 20 15% 5%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+/* Film grain texture overlay */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -3%); }
+  20% { transform: translate(3%, 2%); }
+  30% { transform: translate(-1%, 4%); }
+  40% { transform: translate(4%, -1%); }
+  50% { transform: translate(-3%, 3%); }
+  60% { transform: translate(2%, -4%); }
+  70% { transform: translate(-4%, 2%); }
+  80% { transform: translate(3%, -2%); }
+  90% { transform: translate(-2%, 3%); }
+}
+
+.grain-overlay {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  animation: grain 0.5s steps(2) infinite;
+}
+
+/* Polaroid styles */
+.polaroid {
+  background: #faf8f3;
+  box-shadow: 
+    0 4px 20px rgba(0,0,0,0.5),
+    0 2px 8px rgba(0,0,0,0.3),
+    inset 0 0 0 1px rgba(255,255,255,0.1);
+}
+
+.polaroid-inner {
+  background: #1a0a0a;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--wine));
+  border-radius: 2px;
+}
+
+/* Flash animation */
+@keyframes flash {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  30% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+.flash-effect {
+  animation: flash 0.6s ease-out forwards;
+}
+
+/* Shimmer for gold elements */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--gold)) 0%,
+    hsl(var(--gold-light)) 40%,
+    hsl(var(--gold)) 60%,
+    hsl(var(--gold-light)) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Vignette effect */
+.vignette {
+  box-shadow: inset 0 0 120px rgba(0,0,0,0.7);
+}
+
+/* Ornamental divider */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: hsl(var(--gold));
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.ornament::before,
+.ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.4), transparent);
+}
+
+/* Photobooth strip */
+.strip-frame {
+  background: #f9f5ec;
+  border: 1px solid hsl(var(--border));
+}
+
+/* Countdown pulse */
+@keyframes countPulse {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+.count-pulse {
+  animation: countPulse 0.6s ease-out forwards;
+}
+
+/* Particle float */
+@keyframes floatParticle {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+}
+
+/* Soft glow */
+.wine-glow {
+  box-shadow: 0 0 30px hsl(var(--wine) / 0.3), 0 0 60px hsl(var(--wine) / 0.15);
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px hsl(var(--gold) / 0.3);
+}
+
+/* Typography */
+.font-playfair { font-family: 'Playfair Display', serif; }
+.font-cormorant { font-family: 'Cormorant Garamond', serif; }
+.font-montserrat { font-family: 'Montserrat', sans-serif; }
+
+/* Camera frame border animation */
+@keyframes borderPulse {
+  0%, 100% { box-shadow: 0 0 0 2px hsl(var(--wine) / 0.4), 0 0 20px hsl(var(--wine) / 0.2); }
+  50% { box-shadow: 0 0 0 3px hsl(var(--wine) / 0.7), 0 0 40px hsl(var(--wine) / 0.35); }
+}
+
+.camera-border {
+  animation: borderPulse 3s ease-in-out infinite;
+}
+
+/* Photo slot empty state breathing */
+@keyframes breathe {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.breathe {
+  animation: breathe 2.5s ease-in-out infinite;
+}
+
+/* Elegant button hover */
+.btn-elegant {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-elegant::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-elegant:hover::before {
+  transform: translateX(100%);
+}
+
+/* Light leak effect */
+.light-leak {
+  background: radial-gradient(ellipse at top left, hsl(var(--wine-light) / 0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at bottom right, hsl(var(--gold) / 0.08) 0%, transparent 50%);
+}
