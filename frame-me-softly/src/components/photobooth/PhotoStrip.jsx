@@ -9,19 +9,24 @@ export default function PhotoStrip({ photos, filters, onDelete }) {
   const isFull = photos.every(Boolean);
   const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-  const handleDownload = async () => {
-    if (!stripRef.current) return;
-    const canvas = await html2canvas(stripRef.current, {
-      scale: 2,
-      backgroundColor: '#f9f5ec',
-      useCORS: true,
-      allowTaint: true,
-    });
-    const link = document.createElement('a');
-    link.download = `our-memories-${Date.now()}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-  };
+const handleDownload = async () => {
+  if (!stripRef.current) return;
+
+  const canvas = await html2canvas(stripRef.current, {
+    scale: 2,
+    backgroundColor: '#f9f5ec',
+    useCORS: true,
+    allowTaint: true,
+  });
+
+  const link = document.createElement('a');
+
+  link.download = `our-memories-${Date.now()}.png`;
+
+  link.href = canvas.toDataURL('image/png');
+
+  link.click();
+};
 
   return (
     <div className="flex flex-col items-center gap-4">

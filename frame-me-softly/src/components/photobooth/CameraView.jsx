@@ -85,151 +85,210 @@ export default function CameraView({
 
         {/* MAIN FRAME */}
         <div
-          className="relative rounded-2xl overflow-hidden camera-border bg-black"
+          className="relative rounded-2xl overflow-hidden camera-border bg-black flex"
           style={{
-            aspectRatio: '4/3',
             minWidth: 320,
-            maxWidth: 500,
+            maxWidth: 700,
             width: '100%',
+            height: '420px',
           }}
         >
 
-          {/* VIDEO */}
-          {!cameraError && (
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              muted
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{
-                transform: 'scaleX(-1)',
-                filter: filter?.css || 'none',
-                opacity: cameraReady ? 1 : 0,
-                transition: 'opacity 0.5s ease',
-              }}
-            />
-          )}
+          {/* CAMERA SIDE */}
+          <div className="relative flex-[1.9] overflow-hidden">
 
-          {/* LOADING */}
-          {!cameraReady && !cameraError && (
-            <div className="absolute inset-0 flex items-center justify-center bg-[#0d0406] z-20">
-              <div className="w-6 h-6 border-2 border-wine/30 border-t-wine rounded-full animate-spin" />
-            </div>
-          )}
-
-          {/* CAMERA ERROR */}
-          {cameraError && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0406] text-ivory/40 z-20">
-              <Camera size={40} className="mb-3 text-wine/50" />
-
-              <p className="font-cormorant text-lg italic">
-                Camera access required
-              </p>
-
-              <p className="font-montserrat text-xs mt-1 text-ivory/30">
-                Please allow camera permissions
-              </p>
-            </div>
-          )}
-
-          {/* FILTER OVERLAY */}
-          {filter?.overlay && (
-            <div
-              className="absolute inset-0 pointer-events-none mix-blend-multiply z-10"
-              style={{
-                background: filter.overlay,
-              }}
-            />
-          )}
-
-          {/* VIEWFINDER */}
-          <div
-            className="absolute inset-0 pointer-events-none z-10"
-            style={{
-              background:
-                'linear-gradient(transparent 49.5%, rgba(255,255,255,0.03) 49.5%, rgba(255,255,255,0.03) 50.5%, transparent 50.5%), linear-gradient(90deg, transparent 49.5%, rgba(255,255,255,0.03) 49.5%, rgba(255,255,255,0.03) 50.5%, transparent 50.5%)',
-            }}
-          />
-
-          {/* VIGNETTE */}
-          <div
-            className="absolute inset-0 pointer-events-none z-10"
-            style={{
-              boxShadow: 'inset 0 0 80px rgba(0,0,0,0.65)',
-            }}
-          />
-
-          {/* CORNERS */}
-          {[
-            'top-0 left-0',
-            'top-0 right-0',
-            'bottom-0 left-0',
-            'bottom-0 right-0',
-          ].map((pos, i) => (
-            <div
-              key={i}
-              className={`absolute ${pos} w-6 h-6 z-20 pointer-events-none`}
-            >
-              <div
-                className={`absolute w-4 h-4 border-wine-light
-                ${
-                  i === 0
-                    ? 'border-t-2 border-l-2 top-1 left-1'
-                    : i === 1
-                    ? 'border-t-2 border-r-2 top-1 right-1'
-                    : i === 2
-                    ? 'border-b-2 border-l-2 bottom-1 left-1'
-                    : 'border-b-2 border-r-2 bottom-1 right-1'
-                }`}
+            {/* VIDEO */}
+            {!cameraError && (
+              <video
+                ref={videoRef}
+                autoPlay
+                playsInline
+                muted
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{
+                  transform: 'scaleX(-1)',
+                  filter: filter?.css || 'none',
+                  opacity: cameraReady ? 1 : 0,
+                  transition: 'opacity 0.5s ease',
+                }}
               />
-            </div>
-          ))}
+            )}
 
-          {/* PHOTO COUNTER */}
-          <div className="absolute top-3 right-3 z-30 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm rounded-full px-2.5 py-1">
-            {[0, 1, 2].map((i) => (
+            {/* LOADING */}
+            {!cameraReady && !cameraError && (
+              <div className="absolute inset-0 flex items-center justify-center bg-[#0d0406] z-20">
+                <div className="w-6 h-6 border-2 border-wine/30 border-t-wine rounded-full animate-spin" />
+              </div>
+            )}
+
+            {/* CAMERA ERROR */}
+            {cameraError && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0d0406] text-ivory/40 z-20">
+                <Camera size={40} className="mb-3 text-wine/50" />
+
+                <p className="font-cormorant text-lg italic">
+                  Camera access required
+                </p>
+
+                <p className="font-montserrat text-xs mt-1 text-ivory/30">
+                  Please allow camera permissions
+                </p>
+              </div>
+            )}
+
+            {/* FILTER OVERLAY */}
+            {filter?.overlay && (
+              <div
+                className="absolute inset-0 pointer-events-none mix-blend-multiply z-10"
+                style={{
+                  background: filter.overlay,
+                }}
+              />
+            )}
+
+            {/* VIEWFINDER */}
+            <div
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{
+                background:
+                  'linear-gradient(transparent 49.5%, rgba(255,255,255,0.03) 49.5%, rgba(255,255,255,0.03) 50.5%, transparent 50.5%), linear-gradient(90deg, transparent 49.5%, rgba(255,255,255,0.03) 49.5%, rgba(255,255,255,0.03) 50.5%, transparent 50.5%)',
+              }}
+            />
+
+            {/* VIGNETTE */}
+            <div
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{
+                boxShadow: 'inset 0 0 80px rgba(0,0,0,0.65)',
+              }}
+            />
+
+            {/* CORNERS */}
+            {[
+              'top-0 left-0',
+              'top-0 right-0',
+              'bottom-0 left-0',
+              'bottom-0 right-0',
+            ].map((pos, i) => (
               <div
                 key={i}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  i < photosCount
-                    ? 'bg-wine-light'
-                    : 'bg-white/20'
-                }`}
-              />
+                className={`absolute ${pos} w-6 h-6 z-20 pointer-events-none`}
+              >
+                <div
+                  className={`absolute w-4 h-4 border-wine-light
+                  ${
+                    i === 0
+                      ? 'border-t-2 border-l-2 top-1 left-1'
+                      : i === 1
+                      ? 'border-t-2 border-r-2 top-1 right-1'
+                      : i === 2
+                      ? 'border-b-2 border-l-2 bottom-1 left-1'
+                      : 'border-b-2 border-r-2 bottom-1 right-1'
+                  }`}
+                />
+              </div>
             ))}
+
+            {/* PHOTO COUNTER */}
+            <div className="absolute top-3 right-3 z-30 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm rounded-full px-2.5 py-1">
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    i < photosCount
+                      ? 'bg-wine-light'
+                      : 'bg-white/20'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* QUOTE */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 2 }}
+              className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30 text-center px-6 pointer-events-none"
+            >
+              <p
+                className="font-cormorant italic text-ivory/80"
+                style={{
+                  fontSize: '0.95rem',
+                  lineHeight: 1.5,
+                  textShadow: '0 2px 10px rgba(0,0,0,0.95)',
+                }}
+              >
+                “Some memories stay alive
+                <br />
+                long after the moment ends.”
+              </p>
+
+              <div className="mt-2 flex items-center justify-center gap-2">
+                <div className="h-px w-8 bg-gold/20" />
+
+                <span className="text-[9px] tracking-[0.35em] text-gold/40 font-montserrat">
+                  FOREVER
+                </span>
+
+                <div className="h-px w-8 bg-gold/20" />
+              </div>
+            </motion.div>
+
           </div>
 
-          {/* QUOTE — INSIDE REAL EMPTY SPACE */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 2 }}
-            className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30 text-center px-6 pointer-events-none"
-          >
-            <p
-              className="font-cormorant italic text-ivory/80"
+          {/* DECORATIVE SIDE PANEL */}
+          <div className="relative flex-1 overflow-hidden bg-gradient-to-b from-[#4a0d1c] via-[#64142a] to-[#2a0710]">
+
+            {/* TEXTURE */}
+            <div
+              className="absolute inset-0 opacity-20"
               style={{
-                fontSize: '0.95rem',
-                lineHeight: 1.5,
-                textShadow: '0 2px 10px rgba(0,0,0,0.95)',
+                backgroundImage:
+                  'radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px)',
+                backgroundSize: '4px 4px',
               }}
+            />
+
+            {/* GLOW */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  'radial-gradient(circle at center, rgba(255,120,120,0.18), transparent 70%)',
+              }}
+            />
+
+            {/* DECORATIVE CONTENT */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.4, duration: 1.8 }}
+              className="absolute inset-0 flex flex-col items-center justify-center text-center px-8 z-20"
             >
-              “Some memories stay alive
-              <br />
-              long after the moment ends.”
-            </p>
 
-            <div className="mt-2 flex items-center justify-center gap-2">
-              <div className="h-px w-8 bg-gold/20" />
-
-              <span className="text-[9px] tracking-[0.35em] text-gold/40 font-montserrat">
-                FOREVER
+              <span className="font-montserrat text-[10px] tracking-[0.45em] uppercase text-gold/50 mb-5">
+                Always yours, Paula
               </span>
 
-              <div className="h-px w-8 bg-gold/20" />
-            </div>
-          </motion.div>
+              <p className="font-playfair italic text-3xl text-ivory/90 leading-snug">
+                Love is made
+                <br />
+                of tiny moments
+              </p>
+
+              <div className="mt-6 w-16 h-px bg-gold/30" />
+
+              <p className="mt-6 text-sm text-ivory/50 font-cormorant italic leading-relaxed">
+                Captured softly
+                <br />
+                between flashes,
+                <br />
+                music and midnight.
+              </p>
+
+            </motion.div>
+
+          </div>
 
         </div>
       </div>
