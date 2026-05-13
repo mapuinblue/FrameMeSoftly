@@ -1,4 +1,4 @@
-# Love Photobooth 📸✨
+# Frame Me Softly 📸✨
 
 A romantic vintage-inspired digital photobooth built with React, Framer Motion, and TailwindCSS.
 Capture aesthetic photo strips with cinematic filters, ambient music, elegant animations, and downloadable memories.
